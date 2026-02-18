@@ -1,3 +1,2 @@
 #!/bin/sh
-#
-xdg-open http://REPLACE-W/METASPLOITABLE-IMAGE-IP-ADDRESS/NewWebsite
+xdg-open http://172.16.30.60/NewWebsite

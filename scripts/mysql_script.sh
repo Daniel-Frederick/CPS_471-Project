@@ -1,12 +1,10 @@
 #!/usr/bin/expect -f
-#
 set timeout -1
 spawn $env(SHELL)
-match max 100000
-# CHANGE THE SCRIPT AS SHOWN BELOW
-send "mysql -u REPLACE-THIS-WITH-VALID-MYSQL-USERNAME -p -h REPLACE-W/METASPLOITABLE-IMAGE-IP-ADDRESS \r"
+match_max 100000
+send "mysql -u root -p -h 172.16.30.60\r"
 expect "*password:"
-send "REPLACE-THIS-WITH-USERNAME'S-PASSWORD\r"
+send "YOUR_MYSQL_PASSWORD\r"
 expect "MySQL*"
 send "show databases;\r"
 sleep 1
