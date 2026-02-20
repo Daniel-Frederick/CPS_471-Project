@@ -1,23 +1,14 @@
 #!/usr/bin/expect -f
-set timeout -1
-spawn $env(SHELL)
-match_max 100000
-
-send "mysql -u student -p -h 172.16.30.60\r"
-
-expect "*password:"
-send "student\r" 
-
-expect "MySQL*"
+set timeout 30
+spawn mysql -u student -p -h 172.16.30.60
+expect "password:"
+send "student\r"
+expect "mysql>"
 send "show databases;\r"
-
-expect "MySQL*"
+expect "mysql>"
 send "use tikiwiki;\r"
-
-expect "MySQL*"
+expect "mysql>"
 send "show tables;\r"
-
-expect "MySQL*"
-send "exit;\r"
-
+expect "mysql>"
+send "exit\r"
 expect eof
