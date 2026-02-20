@@ -130,3 +130,28 @@ Verify from Kali after removal:
 - `exploit`
 
 Should return "connection refused" or fail to connect.
+
+4. remove distcc
+Stop the service
+`/etc/init.d/distcc stop`
+
+Disable it from starting on boot
+`update-rc.d distcc disable`
+
+Uninstall completely
+`apt-get remove -y distcc`
+`apt-get purge -y distcc`
+
+Verify port 3632 is no longer listening
+`netstat -tlnp | grep 3632`
+
+`kill -9 ####`
+
+5. MySQL
+
+Test Kali:
+`use auxiliary/scanner/mysql/mysql_login
+set BLANK_PASSWORDS true
+set RHOSTS 172.16.30.60
+set USERNAME root
+exploit`
