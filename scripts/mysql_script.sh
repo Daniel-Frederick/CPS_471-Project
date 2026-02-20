@@ -2,17 +2,22 @@
 set timeout -1
 spawn $env(SHELL)
 match_max 100000
-send "mysql -u root -p -h 172.16.30.60 --ssl-mode=DISABLED\r"
+
+send "mysql -u script_user -p -h 172.16.30.60\r"
+
 expect "*password:"
-send "\r" 
+send "student\r" 
+
 expect "MySQL*"
 send "show databases;\r"
-sleep 1
+
 expect "MySQL*"
 send "use tikiwiki;\r"
+
 expect "MySQL*"
 send "show tables;\r"
-sleep 1
+
 expect "MySQL*"
 send "exit;\r"
 
+expect eof
