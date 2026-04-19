@@ -2,20 +2,16 @@
 
 ## 1. Weak Account Passwords
 
-CMD:
-- `passwd -l user`
-- `passwd -l postgres`
-- `passwd -l sys`
-- `passwd -l klog`
-- `passwd -l service`
+mysql:
+- `mysql -u root -p`
 
-Verification:
-- `cat /etc/shadow`
+accounts:
+- `select user, host from mysql.user;`
 
 ## 2. Firewall
 
 CMD:
-- `iptables -L`
+- `sudo iptables -L`
 
 ONLY these ports allowed:
 - 22 (SSH)
